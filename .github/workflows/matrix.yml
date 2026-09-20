@@ -7,12 +7,16 @@ jobs:
   test-python:
     strategy:
       matrix:
-        os: ['ubunta-latest','windows-latest']
+        os:
+          - ubuntu-latest
+          - windows-latest
 
-    strategy:
-      matrix:
-            python-versions: ['3.12','3.13','3.14']
-     runs-on: ${{ matrix.os }}
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code

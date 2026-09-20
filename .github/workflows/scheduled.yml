@@ -1,8 +1,10 @@
 name: Scheduled Workflow
 
 on:
-  schedule:
-    - cron: "* * * * *"
+  # schedule:
+   # - cron: "* * * * *"
+   workflow_dispatch:
+     
 
 jobs:
   scheduled-job:

@@ -36,3 +36,7 @@ jobs:
 
       - name: Check Python version
         run: python --version
+        
+      - name: Intentional failure
+        if: matrix.python-version == '3.10' && matrix.os == 'ubuntu-latest'
+        run: exit 1

@@ -5,38 +5,31 @@ on:
 
 jobs:
   test-python:
+    runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: true
 
       matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-
-        python-version:
-          - "3.10"
-          - "3.11"
-          - "3.12"
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12"]
 
         exclude:
           - os: windows-latest
             python-version: "3.10"
 
-    runs-on: ${{ matrix.os }}
-
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v7
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Check Python version
         run: python --version
-        
+
       - name: Intentional failure
         if: matrix.python-version == '3.10' && matrix.os == 'ubuntu-latest'
         run: exit 1

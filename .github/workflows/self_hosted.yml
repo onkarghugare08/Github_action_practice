@@ -1,0 +1,33 @@
+name: Self Hosted Runner
+
+on:
+  push:
+
+jobs:
+  self-hosted-job:
+    runs-on: self-hosted
+
+    steps:
+      - name: Show hostname
+        run: |
+          echo "Running on:"
+          hostname
+
+      - name: Show current user
+        run: whoami
+
+      - name: Show working directory
+        run: pwd
+
+      - name: Show OS
+        run: |
+          cat /etc/os-release
+
+      - name: Create test file
+        run: |
+          echo "Created by GitHub Actions" > ~/github-actions-day42.txt
+
+      - name: Verify file
+        run: |
+          ls -l ~/github-actions-day42.txt
+          cat ~/github-actions-day42.txt

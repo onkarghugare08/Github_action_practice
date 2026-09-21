@@ -1,0 +1,36 @@
+name: GitHub Hosted Runners
+
+on:
+  push:
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Ubuntu information
+        run: |
+          echo "OS: Ubuntu"
+          echo "Hostname: $(hostname)"
+          echo "User: $(whoami)"
+          echo "Working Directory: $(pwd)"
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Show Windows information
+        shell: pwsh
+        run: |
+          Write-Host "OS: Windows"
+          Write-Host "Hostname: $env:COMPUTERNAME"
+          Write-Host "User: $env:USERNAME"
+          Write-Host "Working Directory: $(Get-Location)"
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: Show macOS information
+        run: |
+          echo "OS: macOS"
+          echo "Hostname: $(hostname)"
+          echo "User: $(whoami)"
+          echo "Working Directory: $(pwd)"

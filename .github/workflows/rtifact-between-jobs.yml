@@ -1,0 +1,40 @@
+name: Artifact Between Jobs
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create build file
+        run: |
+          mkdir -p build
+          echo "Hello from Build Job" > build/build-output.txt
+          date >> build/build-output.txt
+
+      - name: Show build file
+        run: cat build/build-output.txt
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: build/build-output.txt
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: downloaded
+
+      - name: Read artifact
+        run: |
+          echo "Artifact downloaded from build job:"
+          cat downloaded/build-output.txt

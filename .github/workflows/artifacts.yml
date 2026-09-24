@@ -1,0 +1,25 @@
+name: Upload Artifact
+
+on:
+  push:
+
+jobs:
+  create-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create report
+        run: |
+          mkdir -p reports
+          echo "Day 44 CI Test Report" > reports/test-report.txt
+          echo "Pipeline completed successfully" >> reports/test-report.txt
+          date >> reports/test-report.txt
+
+      - name: Display report
+        run: cat reports/test-report.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: day-44-test-report
+          path: reports/test-report.txt

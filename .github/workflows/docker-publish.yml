@@ -26,7 +26,7 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v7
         with:
-          context: ./docker-app
+          context: ./docker_app
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/testingrepo:latest

@@ -13,7 +13,7 @@ jobs:
 
       - name: Run custom greeting action
         id: greeting
-        uses: ./.github/actions/setup-and-greet
+        uses: ./.github/actions/setup-and-greet/testing.yml
         with:
           name: "Onkar"
           language: "en"

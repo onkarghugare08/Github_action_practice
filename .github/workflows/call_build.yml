@@ -13,8 +13,8 @@ jobs:
       app_name: "my-web-app"
       environment: "production"
 
-    secrets:
-      docker_token: ${{ secrets.DOCKERHUB_TOKEN }}
+    secrets: inherit
+    
 
   show-version:
     needs: build

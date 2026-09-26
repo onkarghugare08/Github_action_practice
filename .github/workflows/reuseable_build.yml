@@ -15,11 +15,6 @@ on:
         default: staging
         type: string
 
-    secrets:
-      docker_token:
-        description: "Docker Hub token"
-        required: true
-
     outputs:
       build_version:
         description: "Generated build version"

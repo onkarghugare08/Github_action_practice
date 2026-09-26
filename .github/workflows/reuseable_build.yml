@@ -42,7 +42,7 @@ jobs:
 
       - name: Check Docker token
         env:
-          DOCKER_TOKEN: ${{ secrets.docker_token }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
           if [ -n "$DOCKERHUB_TOKEN" ]; then
             echo "Docker token is set: true"

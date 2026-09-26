@@ -1,10 +1,10 @@
 name: Call Reusable Build
 
 on:
-  push:
-    branches:
-      - main
-
+ # push:
+   # branches:
+  #    - main
+  workflow_dispatch:
 jobs:
   build:
     uses: ./.github/workflows/reuseable_build.yml

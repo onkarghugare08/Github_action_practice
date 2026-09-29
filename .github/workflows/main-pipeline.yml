@@ -1,0 +1,37 @@
+name: Main CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test:
+    uses: ./.github/workflows/reusable-build-test.yml
+
+    with:
+      python_version: "3.12"
+      run_tests: true
+
+  docker:
+    needs: build-test
+    uses: ./.github/workflows/reusable-docker.yml
+    secrets: inherit
+
+    with:
+      image_name: mypython
+      tag: latest
+
+
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+
+    environment:
+      name: production
+
+    steps:
+      - name: Deploy
+        run: |
+          echo "Deploying image: ${{ needs.docker.outputs.image_url }} to production"
+          echo "Deployment completed successfully."

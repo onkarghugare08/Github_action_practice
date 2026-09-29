@@ -23,7 +23,7 @@ jobs:
       tag: latest
 
   trivy-scan:
-    needs: build-test
+    needs: docker
     uses: ./.github/workflows/triavy_scan.yml
     secrets: inherit
 

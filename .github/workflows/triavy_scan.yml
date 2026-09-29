@@ -27,10 +27,11 @@ jobs:
             - name: Build Docker image
               uses: docker/build-push-action@v7
               with:
+                context: ./day48
                 push: false
                 tags: "${{ secrets.DOCKER_USERNAME }}/mypython:latest"
                 load: true
-
+                
             - name: Trivy Scan
               uses: aquasecurity/trivy-action@v0.36.0
               with:
